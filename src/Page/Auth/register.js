@@ -1,17 +1,30 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { Helmet } from 'react-helmet';
+import { registerUser } from '../../Storage/Action/auth'
+import Loading from '../../Component/Loading'
 
 let url = `${process.env.REACT_APP_API_URL}/auth/register`
 
 export default function Register(){
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const user = useSelector((state)=>state.registerUser)
+
+    const [showLoading, setShowLoading] = useState(false);
+    const closeLoading = () => setShowLoading(false);
+    const openLoading = () => setShowLoading(true);
+
+    const [showError, setShowError] = useState(false);
 
     const [inputData,setInputData] = useState({
         name:"",email:"",password:""
@@ -31,24 +44,28 @@ export default function Register(){
             name: inputData.name,
             password: inputData.password
         }
-        axios.post(url,newData,{
-          headers:{
-            "Content-Type": "application/json",
-            "Accept" : "application/json"
-          }
-        }).then((res)=>{
-          console.log("register success")
-          handleShow()
-          console.log(res)
-        }).catch((err)=>{
-          console.log("register fail")
-          console.log(err)
-        })
-    
+        dispatch(registerUser(newData))
     }
+
+    useEffect(()=>{
+        if (user.isLoading) {
+            openLoading()
+        } else {
+            closeLoading()
+        }
+      },[user.isLoading])
+
+      useEffect(()=>{
+        if (user.data) {
+            handleShow()
+        }
+      },[user.data])
     
     return (
         <div className='container col-6 mt-5'>
+            <Helmet>
+                <title>Recipe Website | Register</title>
+            </Helmet>
             <h5 className='text-center mb-5' style={{color: '#EFC81A'}}>Recipe..</h5>
             <h5 className='text-center' style={{color: '#EFC81A'}}>Let’s Get Started !</h5>
             <p className='text-center' style={{color: '#8692A6'}}>Create new account to access all features</p>
@@ -92,6 +109,24 @@ export default function Register(){
                 </Button>
                 </Modal.Footer>
             </Modal>
+
+            {/*Login Loading */}
+            {user.isLoading && 
+                <Modal show={showLoading} onHide={()=>closeLoading()}>
+                    <Modal.Body className='text-center'>
+                        <Loading />
+                    </Modal.Body>
+                </Modal>
+            }
+            {/*Login Error*/}
+            <div className="container">
+
+            {user.errorMessage && 
+                <div className="alert alert-danger my-2" role="alert" onClick={()=>setShowError(false)}>
+                    {user.errorMessage}
+                </div>
+            }
+            </div>
         </div>
     )
 }

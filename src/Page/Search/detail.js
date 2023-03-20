@@ -6,6 +6,9 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Bookmark,HandThumbsUp } from 'react-bootstrap-icons';
+import { Helmet } from 'react-helmet';
+import { useDispatch,useSelector } from 'react-redux'
+import {getMenu} from '../../Storage/Action/menu'
 
 let url = `${process.env.REACT_APP_API_URL}/recipe/detail`
 
@@ -13,24 +16,21 @@ export default function SearchDetail() {
     const [data,setData] = useState()
     let { id } = useParams();
 
+    const menu = useSelector((state)=>state.menu)
+    const dispatch = useDispatch()
+
     useEffect(()=>{
-        getData()
+        dispatch(getMenu(url+`/${id}`))
       },[])
-      
-    const getData = () => {
-        axios.get(url+`/${id}`).then((res)=>{
-            console.log(res)
-            setData(res.data.data)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
 
     return (
         <div>
+            <Helmet>
+                <title>Recipe Website | Recipe Detail</title>
+            </Helmet>
             <div className='container mb-5'>
                 <Navbar />
-                {data?.map((item,index) => {
+                {menu.data?.map((item,index) => {
                     return(
                         <div key={index+1}>
                             {/*Recipe Header*/}
@@ -38,7 +38,7 @@ export default function SearchDetail() {
                                 <div className='col-6' style={{borderLeft: "7px solid #EFC81A"}}>
                                     <div className='row'>
                                         <div className='col-2 d-flex align-items-center'>
-                                            <img src={require('../../Asset/dp.png')}></img>
+                                            <img src={item.creator_photo} height={65} style={{borderRadius: 65/2}} alt=''></img>
                                         </div>
                                         <div className='col-4 p-2'>
                                             <p>{item.creator}</p>
@@ -58,7 +58,7 @@ export default function SearchDetail() {
                             {/*Recipe Data*/}
                             <div className='text-center mt-5 mb-5'>
                                 <h1 style={{color: '#2E266F'}}>{item.name}</h1>
-                                <img className='mt-3' src={item.photo}></img>
+                                <img className='mt-3' src={item.photo}  alt="" height={400}></img>
                             </div>
                             <div className='mt-5 pb-5' style={{borderBottom: "7px solid #EFC81A"}}>
                                 <h3 style={{color: '#2E266F'}}>Ingredients</h3>
@@ -78,7 +78,7 @@ export default function SearchDetail() {
                                     <div className='col-2 text-end' style={{borderRight: "7px solid #EFC81A"}}>
                                         <div className='row'>
                                             <div className='col-6 d-flex align-items-center justify-content-end'>
-                                                <img src={require('../../Asset/dp.png')}></img>
+                                                <img src={require('../../Asset/dp.png')} alt="" height={65}></img>
                                             </div>
                                             <div className='col-6 p-2'>
                                                 <p>Ayudia</p>

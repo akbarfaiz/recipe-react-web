@@ -5,6 +5,7 @@ import Footer from '../../Component/Footer'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ export default function Home() {
 
   return (
     <div>
+      <Helmet>
+        <title>Recipe Website | Home</title>
+      </Helmet>
       <div className='container'>
         <Navbar />
         {/*Banner Search*/}
