@@ -1,7 +1,7 @@
 
 # Recipe Website
 
-Recipe Website is a web that provides a place for users to search or share recipes. This website was built using React Js.
+Recipe Website is a web that provides a place for users to search or share recipes. This website was built using React Js. For Backend, I using my API at the following URL : https://github.com/akbarfaiz/food_recipe
 
 
 
@@ -27,7 +27,7 @@ Recipe Website is a web that provides a place for users to search or share recip
 4. Turn on your server like Xampp for localhost
 5. Make new file in your project directory callad '.env' and copy this code to that file :
 ```bash
-  REACT_APP_API_URL= //Your Web Server
+  REACT_APP_API_URL=https://long-tan-monkey-veil.cyclic.app
 ```
 6. Open Your URL Web server
 
