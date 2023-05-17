@@ -3,7 +3,12 @@
 
 Recipe Website is a web that provides a place for users to search or share recipes. This website was built using React Js. For Backend, I using my API at the following URL : https://github.com/akbarfaiz/food_recipe
 
-
+<h3>Built with</h3>
+This app was built with some technologies below : <br>
+- <a href='https://developer.mozilla.org/en-US/docs/Web/CSS'>CSS</a><br>
+- <a href='https://www.javascript.com/'>Javascript</a><br>
+- <a href='https://reactjs.org/'>React Js</a><br>
+- <a href='https://axios-http.com/'>Axios</a><br>
 
 ## Requirements
 
@@ -32,12 +37,13 @@ Recipe Website is a web that provides a place for users to search or share recip
 6. Open Your URL Web server
 
 ## Documentation
-![image](https://user-images.githubusercontent.com/87055460/233309235-66771124-5765-4edd-a6bd-452fe55319bf.png)
-![image](https://user-images.githubusercontent.com/87055460/233309421-c89ffb20-b002-4d6a-b0db-3ba062f2bac0.png)
-![image](https://user-images.githubusercontent.com/87055460/233309620-67cdfc44-c905-479e-b986-95810f466555.png)
-![image](https://user-images.githubusercontent.com/87055460/233309768-0682d467-90f3-453a-9034-11bcc557e14e.png)
-![image](https://user-images.githubusercontent.com/87055460/233309874-89dc72bf-4964-4c81-a2d0-59c9af2de41a.png)
-
+| ![image](https://user-images.githubusercontent.com/87055460/233309235-66771124-5765-4edd-a6bd-452fe55319bf.png) | ![image](https://user-images.githubusercontent.com/87055460/233309421-c89ffb20-b002-4d6a-b0db-3ba062f2bac0.png) |
+|---------------------------------------|--------------------------------------------|
+| Homepage                              | Search Page                                |
+| ![image](https://user-images.githubusercontent.com/87055460/233309620-67cdfc44-c905-479e-b986-95810f466555.png) | ![image](https://user-images.githubusercontent.com/87055460/233309874-89dc72bf-4964-4c81-a2d0-59c9af2de41a.png) |
+| Profile Page                          | Register Page                              |
+| ![image](https://user-images.githubusercontent.com/87055460/233309768-0682d467-90f3-453a-9034-11bcc557e14e.png) |
+| Login Page                            |
 
 # Project Deploy
 https://recipe-react-web.vercel.app/
